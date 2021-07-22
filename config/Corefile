@@ -1,0 +1,15 @@
+example.com:53 172.16.10.0/24{
+    etcd {
+        path /skydns
+        endpoint http://etcd:2379
+    }
+}
+
+
+.:53 {
+    any
+    cache 160 example.com
+    loadbalance
+    forward . 8.8.8.8:53
+    log
+}
